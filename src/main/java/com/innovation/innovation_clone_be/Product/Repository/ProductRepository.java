@@ -1,4 +1,9 @@
 package com.innovation.innovation_clone_be.Product.Repository;
 
-public class ProductRepository {
+import com.innovation.innovation_clone_be.Product.Entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
 }
