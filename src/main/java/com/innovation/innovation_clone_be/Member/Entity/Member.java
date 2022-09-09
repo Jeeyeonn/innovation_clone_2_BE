@@ -30,7 +30,4 @@ public class Member {
     @Column(nullable = false)
     private Boolean subscription;
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cart> carts;
-
 }
