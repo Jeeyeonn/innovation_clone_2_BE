@@ -4,12 +4,12 @@ import com.innovation.innovation_clone_be.Product.Dto.ProductDto;
 import com.innovation.innovation_clone_be.Product.Entity.Product;
 import com.innovation.innovation_clone_be.Product.Repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import org.apache.commons.io.FilenameUtils;
+//import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+//import org.apache.poi.ss.usermodel.Row;
+//import org.apache.poi.ss.usermodel.Sheet;
+//import org.apache.poi.ss.usermodel.Workbook;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +30,7 @@ public class ProductController {
         return "excel";
     }
 
+    /*
 
     @PostMapping("/excel/read")
     public String readExcel(@RequestParam("file") MultipartFile file)
@@ -74,6 +75,8 @@ public class ProductController {
         return "excelList";
 
     }
+
+     */
 
     @PostMapping("/add")
     public void postppp(@RequestBody ProductDto p){
