@@ -1,5 +1,6 @@
 package com.innovation.innovation_clone_be.Cart.Entity;
 
+import com.innovation.innovation_clone_be.Cart.Dto.CartRequestDto;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
 import com.innovation.innovation_clone_be.Product.Entity.Product;
 import lombok.Getter;
@@ -32,4 +33,10 @@ public class Cart {
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
+    public Cart(Product product, CartRequestDto requestDto, Member member) {
+        this.product = product;
+        this.pack = requestDto.getPack();
+        this.count = requestDto.getCount();
+        this.member = member;
+    }
 }

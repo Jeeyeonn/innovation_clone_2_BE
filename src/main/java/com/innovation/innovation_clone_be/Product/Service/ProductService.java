@@ -23,8 +23,6 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final MemberRepository memberRepository;
-    private final CartRepository cartRepository;
 
     @Transactional
     public ResponseDto<?> getAllProduct() {
