@@ -14,6 +14,7 @@ import com.innovation.innovation_clone_be.Product.Repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class CartService {
     private final MemberRepository memberRepository;
     private final CartRepository cartRepository;
 
+    @Transactional
     public ResponseDto<?> addCartProduct(ProductRequestDto requestDto) {
 
         //로그인 토큰 유효성 검증하기
@@ -51,6 +53,7 @@ public class CartService {
 
     }
 
+    @Transactional
     public ResponseDto<?> addCartDetailProduct(Long product_id, CartRequestDto requestDto) {
 
         //로그인 토큰 유효성 검증하기
@@ -76,6 +79,7 @@ public class CartService {
         return ResponseDto.success("success post");
     }
 
+    @Transactional
     public ResponseDto<?> getMyCart() {
         //로그인 토큰 유효성 검증하기
 //        Member member = memberRepository.findById();
@@ -91,6 +95,7 @@ public class CartService {
         return ResponseDto.success(responseDtoList);
     }
 
+    @Transactional
     public ResponseDto<?> deleteCart(Long product_id) {
         //로그인 토큰 유효성 검증하기
 //        Member member = memberRepository.findById();
