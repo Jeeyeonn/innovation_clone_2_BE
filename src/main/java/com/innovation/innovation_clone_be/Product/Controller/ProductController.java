@@ -20,10 +20,4 @@ public class ProductController {
         return productService.getAllProduct();
     }
 
-    // 장바구니에 해당 상품 담기 (상품전체페이지)
-    //로그인 구현 후 HTTP 매개변수 넣기 --------------------------------------
-    @PostMapping("/api/auth/cart")
-    public ResponseDto<?> addCartProduct(@RequestBody ProductRequestDto requestDto){
-        return productService.addCartProduct(requestDto);
-    }
 }
