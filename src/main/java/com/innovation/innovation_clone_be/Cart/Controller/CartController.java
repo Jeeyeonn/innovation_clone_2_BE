@@ -8,9 +8,7 @@ import com.innovation.innovation_clone_be.Product.Dto.Request.ProductRequestDto;
 import com.innovation.innovation_clone_be.Product.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,5 +30,18 @@ public class CartController {
     @PostMapping("/api/auth/main/products/{product_id}/cart")
     public ResponseDto<?> addCartDetailProduct(@PathVariable Long product_id, @RequestBody CartRequestDto requestDto){
         return cartService.addCartDetailProduct(product_id, requestDto);
+    }
+
+
+    // 나의 장바구니
+    //로그인 구현 후 HTTP 매개변수 넣기 --------------------------------------
+    @GetMapping("/api/auth/mycart")
+    public ResponseDto<?> getMyCart(){
+        return cartService.getMyCart();
+    }
+
+    @DeleteMapping("/api/auth/mycart/{product_id}")
+    public ResponseDto<?> deleteCart(@PathVariable Long product_id){
+        return cartService.deleteCart(product_id);
     }
 }
