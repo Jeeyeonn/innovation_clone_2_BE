@@ -5,6 +5,7 @@ import com.innovation.innovation_clone_be.Product.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,4 +21,10 @@ public class ProductController {
         return productService.getAllProduct();
     }
 
+
+    //해당하는 제품 상세 페이지
+    @GetMapping("/api/main/products/{product_id}")
+    public ResponseDto<?> getOneProduct(@PathVariable Long product_id){
+        return productService.getOneProduct(product_id);
+    }
 }

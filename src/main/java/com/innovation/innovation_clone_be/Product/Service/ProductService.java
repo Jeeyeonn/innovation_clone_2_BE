@@ -7,6 +7,7 @@ import com.innovation.innovation_clone_be.Error.Enum.ErrorCode;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
 import com.innovation.innovation_clone_be.Member.Repository.MemberRepository;
 import com.innovation.innovation_clone_be.Product.Dto.Request.ProductRequestDto;
+import com.innovation.innovation_clone_be.Product.Dto.Response.ProductDetailResponseDto;
 import com.innovation.innovation_clone_be.Product.Dto.Response.ProductResponseDto;
 import com.innovation.innovation_clone_be.Product.Entity.Product;
 import com.innovation.innovation_clone_be.Product.Repository.ProductRepository;
@@ -38,4 +39,18 @@ public class ProductService {
         return ResponseDto.success(productResponseDtos);
     }
 
+    @Transactional
+    public ResponseDto<?> getOneProduct(Long product_id) {
+
+        Product product = productRepository.findProductById(product_id);
+
+        //해당하는 제품 아이디 없을 시 오류 반환
+        if(product == null)
+            return ResponseDto.fail(ErrorCode.INVALID_PRODUCT);
+
+        ProductDetailResponseDto productDetailResponseDto = new ProductDetailResponseDto(product);
+
+        return ResponseDto.success(productDetailResponseDto);
+
+    }
 }
