@@ -46,4 +46,9 @@ public class CartController {
     public ResponseDto<?> deleteCart(@PathVariable Long product_id){
         return cartService.deleteCart(product_id);
     }
+
+    @GetMapping(value = "/api/main")
+    public ResponseDto<?> getAllCart() {
+        return cartService.getAllCart();
+    }
 }
