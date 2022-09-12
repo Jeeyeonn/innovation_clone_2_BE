@@ -55,9 +55,8 @@ public class SecurityConfiguration {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/member/**").permitAll()
-                .antMatchers("/api/main/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/api/auth/**").authenticated()
+                .anyRequest().permitAll()
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
                 .and()
                 .apply(new JwtSecurityConfiguration(SECRET_KEY, tokenProvider, userDetailsService));

@@ -1,0 +1,37 @@
+### 회원가입
+
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+
+{
+  "email": "jeeyeon@test.com",
+  "password" : "1234",
+  "username" : "jeeyeon",
+  "subscription" : false
+}
+
+
+
+### 로그인
+
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
+
+{
+  "email" : "jeeyeon@test.com",
+  "password" : "1234"
+}
+
+### 상품전체페이지 -> 장바구니 담기  (오류남 - 404)
+
+POST http://localhost:8080/api/auth/cart
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqZWV5ZW9uQHRlc3QuY29tIiwiYXV0aCI6IlJPTEVfTUVNQkVSIiwiZXhwIjoxNjYzMDM4ODYxfQ.CKv3Rk4EvfcCSw3X-YKQld_Cd1Z8L0NF8yW0Y_1qtzA
+Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NjM1NTcyNjF9.82JjspP0yadyAQ97evE74LRtwHmfWw9-zAx6STG5Gd4
+
+{
+  "productId" :3
+}
+
+
+###

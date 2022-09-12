@@ -7,7 +7,7 @@ import com.innovation.innovation_clone_be.Cart.Repository.CartRepository;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Error.Enum.ErrorCode;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
-import com.innovation.innovation_clone_be.Member.Repository.MemberRepository;
+import com.innovation.innovation_clone_be.Member.Service.MemberService;
 import com.innovation.innovation_clone_be.Product.Dto.Request.ProductRequestDto;
 import com.innovation.innovation_clone_be.Product.Entity.Product;
 import com.innovation.innovation_clone_be.Product.Repository.ProductRepository;
@@ -24,15 +24,16 @@ import java.util.List;
 public class CartService {
 
     private final ProductRepository productRepository;
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
     private final CartRepository cartRepository;
 
     @Transactional
     public ResponseDto<?> addCartProduct(ProductRequestDto requestDto, HttpServletRequest request) {
 
         //로그인 토큰 유효성 검증하기
-        //Member member = memberRepository.findById();
-        // 구현하기 ----------------------------------------------------------
+        ResponseDto<?> result = memberService.chechMember(request);
+
+        Member member = (Member) result.getData();
 
         Product product = productRepository.findProductById(requestDto.getProductId());
 
@@ -40,26 +41,33 @@ public class CartService {
         if (product == null)
             return ResponseDto.fail(ErrorCode.INVALID_PRODUCT);
 
-//        Cart cart = new Cart(member, product);
-//        cartRepository.save(cart);
-//
-//        member.getCarts().add(cart);
-//        product.getCarts().add(cart);
+        Cart findCart = cartRepository.findCartByMemberAndProduct(member,product);
 
-        //해당 제품의 장바구니 수도 업데이트
-        product.setCartNum(product.getCarts().size());
+        if (findCart != null){
+            return ResponseDto.fail(ErrorCode.DUPLICATE_CART);
+        }
+        else{
+            Cart cart = new Cart(product, member);
+            cartRepository.save(cart);
+
+            //해당 제품의 장바구니 수도 업데이트
+            List<Cart> carts = cartRepository.findAllByProduct(product);
+            product.setCartNum(carts.size());
 
 
-        return ResponseDto.success("success post");
+            return ResponseDto.success("success post");
+        }
+
 
     }
 
     @Transactional
-    public ResponseDto<?> addCartDetailProduct(Long product_id, CartRequestDto requestDto) {
+    public ResponseDto<?> addCartDetailProduct(Long product_id, CartRequestDto requestDto, HttpServletRequest request) {
 
         //로그인 토큰 유효성 검증하기
-//        Member member = memberRepository.findById();
-        // 구현하기 ----------------------------------------------------------
+        ResponseDto<?> result = memberService.chechMember(request);
+
+        Member member = (Member) result.getData();
 
         Product product = productRepository.findProductById(product_id);
 
@@ -67,12 +75,8 @@ public class CartService {
         if (product == null)
             return ResponseDto.fail(ErrorCode.INVALID_PRODUCT);
 
-//        Cart cart = new Cart(product, requestDto, member);
-//        cartRepository.save(cart);
-
-//        member.getCarts().add(cart);
-//        product.getCarts().add(cart);
-
+        Cart cart = new Cart(product, requestDto, member);
+        cartRepository.save(cart);
 
         //해당 제품의 장바구니 수도 업데이트
         product.setCartNum(product.getCarts().size());

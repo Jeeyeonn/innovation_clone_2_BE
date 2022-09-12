@@ -39,4 +39,11 @@ public class Cart {
         this.count = requestDto.getCount();
         this.member = member;
     }
+
+    public Cart(Product product, Member member){
+        this.product = product;
+        this.pack = false;
+        this.count = 1;
+        this.member = member;
+    }
 }

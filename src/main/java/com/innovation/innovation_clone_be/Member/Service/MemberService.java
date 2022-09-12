@@ -19,6 +19,9 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static com.innovation.innovation_clone_be.Error.Enum.ErrorCode.INVALID_TOKEN;
+import static com.innovation.innovation_clone_be.Error.Enum.ErrorCode.NULL_TOKEN;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -66,5 +69,22 @@ public class MemberService {
     public void tokenToHeaders(TokenDto tokenDto, HttpServletResponse response) {
         response.addHeader("Authorization", "Bearer " + tokenDto.getAccessToken());
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
+    }
+
+    public ResponseDto<?> chechMember(HttpServletRequest request){
+        if (null == request.getHeader("Refresh-Token")) {
+            return ResponseDto.fail(NULL_TOKEN);
+        }
+
+        if (null == request.getHeader("Authorization")) {
+            return ResponseDto.fail(NULL_TOKEN);
+        }
+
+        if(!tokenProvider.validateToken(request.getHeader("Refresh-Token")))
+            return ResponseDto.fail(INVALID_TOKEN);
+
+        Member member = tokenProvider.getMemberFromAuthentication();
+
+        return ResponseDto.success(member);
     }
 }
