@@ -9,6 +9,7 @@ import com.innovation.innovation_clone_be.Error.Enum.ErrorCode;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
 import com.innovation.innovation_clone_be.Member.Repository.MemberRepository;
 import com.innovation.innovation_clone_be.Product.Dto.Request.ProductRequestDto;
+import com.innovation.innovation_clone_be.Product.Dto.Response.ProductResponseDto;
 import com.innovation.innovation_clone_be.Product.Entity.Product;
 import com.innovation.innovation_clone_be.Product.Repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -117,4 +118,25 @@ public class CartService {
 //        cartRepository.delete(cart);
         return ResponseDto.success("success delete");
     }
+
+    public ResponseDto<?> getAllCart() {
+        List<Product> cartList = productRepository.findAllByOrderByCartNumDesc();
+        List<ProductResponseDto> cartResponseDto = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            cartResponseDto.add(
+            ProductResponseDto.builder()
+                    .productId(cartList.get(i).getId())
+                    .name(cartList.get(i).getName())
+                    .price(cartList.get(i).getPrice())
+                    .img1(cartList.get(i).getImg1())
+                    .img2(cartList.get(i).getImg2())
+                    .build()
+            );
+
+        }
+        return ResponseDto.success(cartResponseDto);
+    }
+
+
+
 }
