@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequiredArgsConstructor
 public class CartController {
@@ -18,10 +20,9 @@ public class CartController {
 
 
     // 장바구니에 해당 상품 담기 (상품전체페이지)
-    //로그인 구현 후 HTTP 매개변수 넣기 --------------------------------------
     @PostMapping("/api/auth/cart")
-    public ResponseDto<?> addCartProduct(@RequestBody ProductRequestDto requestDto){
-        return cartService.addCartProduct(requestDto);
+    public ResponseDto<?> addCartProduct(@RequestBody ProductRequestDto requestDto, HttpServletRequest request){
+        return cartService.addCartProduct(requestDto, request);
     }
 
 

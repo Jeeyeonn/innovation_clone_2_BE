@@ -14,6 +14,7 @@ import com.innovation.innovation_clone_be.Product.Repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,10 @@ public class CartService {
     private final CartRepository cartRepository;
 
     @Transactional
-    public ResponseDto<?> addCartProduct(ProductRequestDto requestDto) {
+    public ResponseDto<?> addCartProduct(ProductRequestDto requestDto, HttpServletRequest request) {
 
         //로그인 토큰 유효성 검증하기
-//        Member member = memberRepository.findById();
+        //Member member = memberRepository.findById();
         // 구현하기 ----------------------------------------------------------
 
         Product product = productRepository.findProductById(requestDto.getProductId());
@@ -98,7 +99,7 @@ public class CartService {
     @Transactional
     public ResponseDto<?> deleteCart(Long product_id) {
         //로그인 토큰 유효성 검증하기
-//        Member member = memberRepository.findById();
+        //Member member = memberRepository.findById();
         // 구현하기 ----------------------------------------------------------
 
         Product product = productRepository.findProductById(product_id);
@@ -107,13 +108,13 @@ public class CartService {
         if (product == null)
             return ResponseDto.fail(ErrorCode.INVALID_PRODUCT);
 
-        Cart cart = cartRepository.findCartByMemberAndProduct(member, product);
-
-        //해당하는 제품이 해당 유저 장바구니에 없을 시 오류 코드 반환
-        if (cart == null)
-            return ResponseDto.fail(ErrorCode.INVALID_CART);
-
-        cartRepository.delete(cart);
+//        Cart cart = cartRepository.findCartByMemberAndProduct(member, product);
+//
+//        //해당하는 제품이 해당 유저 장바구니에 없을 시 오류 코드 반환
+//        if (cart == null)
+//            return ResponseDto.fail(ErrorCode.INVALID_CART);
+//
+//        cartRepository.delete(cart);
         return ResponseDto.success("success delete");
     }
 }
