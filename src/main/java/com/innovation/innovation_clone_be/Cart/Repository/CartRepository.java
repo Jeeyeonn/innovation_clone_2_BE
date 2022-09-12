@@ -10,4 +10,5 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart, Long> {
     Cart findCartByMemberAndProduct(Member member, Product product);
     List<Cart> findAllByProduct(Product product);
+    List<Cart> findCartByMember(Member member);
 }

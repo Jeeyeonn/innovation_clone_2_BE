@@ -28,23 +28,22 @@ public class CartController {
 
     // 장바구니에 해당 상품 담기 (상세페이지)
     //로그인 구현 후 HTTP 매개변수 넣기 --------------------------------------
-    @PostMapping("/api/auth/main/products/{product_id}/cart")
-    public ResponseDto<?> addCartDetailProduct(@PathVariable Long product_id, @RequestBody CartRequestDto requestDto,
-                                               HttpServletRequest request){
-        return cartService.addCartDetailProduct(product_id, requestDto, request);
+    @PostMapping("/api/auth/main/products/cart")
+    public ResponseDto<?> addCartDetailProduct(@RequestBody CartRequestDto requestDto, HttpServletRequest request){
+        return cartService.addCartDetailProduct(requestDto, request);
     }
 
 
     // 나의 장바구니
     //로그인 구현 후 HTTP 매개변수 넣기 --------------------------------------
     @GetMapping("/api/auth/mycart")
-    public ResponseDto<?> getMyCart(){
-        return cartService.getMyCart();
+    public ResponseDto<?> getMyCart(HttpServletRequest request){
+        return cartService.getMyCart(request);
     }
 
     @DeleteMapping("/api/auth/mycart/{product_id}")
-    public ResponseDto<?> deleteCart(@PathVariable Long product_id){
-        return cartService.deleteCart(product_id);
+    public ResponseDto<?> deleteCart(@PathVariable Long product_id, HttpServletRequest request){
+        return cartService.deleteCart(product_id, request);
     }
 
     @GetMapping(value = "/api/main")
