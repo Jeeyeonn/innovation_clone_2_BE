@@ -46,4 +46,8 @@ public class Cart {
         this.count = 1;
         this.member = member;
     }
+
+    public void update(int count) {
+        this.count = count;
+    }
 }

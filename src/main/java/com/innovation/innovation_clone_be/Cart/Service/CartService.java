@@ -2,6 +2,7 @@ package com.innovation.innovation_clone_be.Cart.Service;
 
 import com.innovation.innovation_clone_be.Cart.Dto.CartRequestDto;
 import com.innovation.innovation_clone_be.Cart.Dto.CartResponseDto;
+import com.innovation.innovation_clone_be.Cart.Dto.CartUpdateRequestDto;
 import com.innovation.innovation_clone_be.Cart.Entity.Cart;
 import com.innovation.innovation_clone_be.Cart.Repository.CartRepository;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
@@ -149,5 +150,39 @@ public class CartService {
     }
 
 
+    public ResponseDto<?> deleteAllCart(HttpServletRequest request) {
 
+        //로그인 토큰 유효성 검증하기
+        ResponseDto<?> result = memberService.chechMember(request);
+        Member member = (Member) result.getData();
+
+        List<Cart> carts = cartRepository.findCartByMember(member);
+
+        for (Cart cart : carts)
+            cartRepository.delete(cart);
+
+        return ResponseDto.success("success delete");
+    }
+
+    public ResponseDto<?> putMyCart(HttpServletRequest request, CartUpdateRequestDto requestDto) {
+        //로그인 토큰 유효성 검증하기
+        ResponseDto<?> result = memberService.chechMember(request);
+        Member member = (Member) result.getData();
+
+        Product product = productRepository.findProductById(requestDto.getProductId());
+
+        //해당하는 제품 ID가 없을 시 오류 코드 반환
+        if (product == null)
+            return ResponseDto.fail(ErrorCode.INVALID_PRODUCT);
+
+        Cart cart = cartRepository.findCartByMemberAndProduct(member, product);
+
+        //해당하는 제품이 해당 유저 장바구니에 없을 시 오류 코드 반환
+        if (cart == null)
+            return ResponseDto.fail(ErrorCode.INVALID_CART);
+
+        cart.update(requestDto.getCount());
+        cartRepository.save(cart);
+        return ResponseDto.success("success update");
+    }
 }

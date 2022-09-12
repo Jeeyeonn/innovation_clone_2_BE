@@ -2,6 +2,7 @@ package com.innovation.innovation_clone_be.Cart.Controller;
 
 
 import com.innovation.innovation_clone_be.Cart.Dto.CartRequestDto;
+import com.innovation.innovation_clone_be.Cart.Dto.CartUpdateRequestDto;
 import com.innovation.innovation_clone_be.Cart.Service.CartService;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Product.Dto.Request.ProductRequestDto;
@@ -27,25 +28,37 @@ public class CartController {
 
 
     // 장바구니에 해당 상품 담기 (상세페이지)
-    //로그인 구현 후 HTTP 매개변수 넣기 --------------------------------------
     @PostMapping("/api/auth/main/products/cart")
     public ResponseDto<?> addCartDetailProduct(@RequestBody CartRequestDto requestDto, HttpServletRequest request){
         return cartService.addCartDetailProduct(requestDto, request);
     }
 
 
-    // 나의 장바구니
-    //로그인 구현 후 HTTP 매개변수 넣기 --------------------------------------
+    // 나의 장바구니 목록 보여주기
     @GetMapping("/api/auth/mycart")
     public ResponseDto<?> getMyCart(HttpServletRequest request){
         return cartService.getMyCart(request);
     }
 
+    //제품 수량 변경 (장바구니 페이지)
+    @PutMapping("/api/auth/mycart")
+    public ResponseDto<?> putMyCart(HttpServletRequest request, @RequestBody CartUpdateRequestDto requestDto){
+        return cartService.putMyCart(request, requestDto);
+    }
+
+    // 나의 장바구니 목록 중 하나의 제품 삭제
     @DeleteMapping("/api/auth/mycart/{product_id}")
     public ResponseDto<?> deleteCart(@PathVariable Long product_id, HttpServletRequest request){
         return cartService.deleteCart(product_id, request);
     }
 
+    // 나의 장바구니 목록 전체 삭제
+    @DeleteMapping("/api/auth/mycart")
+    public ResponseDto<?> deleteAllCart(HttpServletRequest request){
+        return cartService.deleteAllCart(request);
+    }
+
+    //전체 제품 보여주기 (전체 상품 페이지)
     @GetMapping(value = "/api/main")
     public ResponseDto<?> getAllCart() {
         return cartService.getAllCart();
