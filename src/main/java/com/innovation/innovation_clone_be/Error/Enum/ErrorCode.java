@@ -16,7 +16,10 @@ public enum ErrorCode {
     DUPLICATE_EMAIL("DUPLICATE_EMAIL", "이미 이메일이 사용중입니다."),
 
     //제품(Product) 관련 오류
-    INVALID_PRODUCT("INVALID_PRODUCT", "해당하는 제품이 없습니다.");
+    INVALID_PRODUCT("INVALID_PRODUCT", "해당하는 제품이 없습니다."),
+
+    //장바구니 관련 오류
+    INVALID_CART("INVALID_CART", "해당하는 제품이 장바구니에 없습니다.");
 
 
 
