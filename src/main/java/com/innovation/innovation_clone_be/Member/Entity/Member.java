@@ -39,7 +39,9 @@ public class Member {
 
     public Member(MemberRequestDto memberRequestDto, String password) {
         this.email = memberRequestDto.getEmail();
+        this.username = memberRequestDto.getUsername();
         this.password = password;
+        this.subscription = memberRequestDto.getSubscription();
     }
 
     public boolean validatePassword(PasswordEncoder passwordEncoder, String password) {
