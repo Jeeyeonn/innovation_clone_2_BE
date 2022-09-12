@@ -164,6 +164,7 @@ public class CartService {
         return ResponseDto.success("success delete");
     }
 
+    @Transactional
     public ResponseDto<?> putMyCart(HttpServletRequest request, CartUpdateRequestDto requestDto) {
         //로그인 토큰 유효성 검증하기
         ResponseDto<?> result = memberService.chechMember(request);
@@ -182,7 +183,7 @@ public class CartService {
             return ResponseDto.fail(ErrorCode.INVALID_CART);
 
         cart.update(requestDto.getCount());
-        cartRepository.save(cart);
+
         return ResponseDto.success("success update");
     }
 }
