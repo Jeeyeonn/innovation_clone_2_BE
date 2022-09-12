@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class CartController {
 
@@ -44,5 +44,10 @@ public class CartController {
     @DeleteMapping("/api/auth/mycart/{product_id}")
     public ResponseDto<?> deleteCart(@PathVariable Long product_id){
         return cartService.deleteCart(product_id);
+    }
+
+    @GetMapping(value = "/api/main")
+    public ResponseDto<?> getAllCart() {
+        return cartService.getAllCart();
     }
 }
