@@ -11,7 +11,8 @@ public enum ErrorCode {
     NULL_TOKEN("NULL_TOKEN", "로그인이 필요합니다."),
     INVALID_TOKEN("INVALID_TOKEN", "토큰의 유효기간이 지났습니다."),
     MEMBER_NOT_FOUND("MEMBER_NOT_FOUND", "해당하는 유저가 없습니다."),
-    INVALID_MEMBER("INVALID_MEMBER", "유저 정보가 일치하지 않습니다."),
+    INVALID_MEMBER("INVALID_MEMBER", "비밀번호가 일치하지 않습니다."),
+    TOKEN_NOT_FOUND("TOKEN_NOT_FOUND", "존재하지 않는 Token 입니다."),
 
     //회원가입 관련 오류
     DUPLICATE_EMAIL("DUPLICATE_EMAIL", "이미 이메일이 사용중입니다."),

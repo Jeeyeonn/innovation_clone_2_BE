@@ -105,4 +105,19 @@ public class TokenProvider {
         return false;
     }
 
+    @Transactional(readOnly = true)
+    public RefreshToken isPresentRefreshToken(Member member) {
+        Optional<RefreshToken> optionalRefreshToken = refreshTokenRepository.findByMember(member);
+        return optionalRefreshToken.orElse(null);
+    }
+
+    public ResponseDto<?> deleteRefreshToken(Member member) {
+        RefreshToken refreshToken = isPresentRefreshToken(member);
+        if (null == refreshToken) {
+            return ResponseDto.fail(ErrorCode.TOKEN_NOT_FOUND);
+        }
+
+        refreshTokenRepository.delete(refreshToken);
+        return ResponseDto.success("success");
+    }
 }
