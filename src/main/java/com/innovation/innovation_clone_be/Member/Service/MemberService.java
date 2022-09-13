@@ -1,5 +1,7 @@
 package com.innovation.innovation_clone_be.Member.Service;
 
+import com.innovation.innovation_clone_be.Cart.Entity.Cart;
+import com.innovation.innovation_clone_be.Cart.Repository.CartRepository;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Error.Enum.ErrorCode;
 import com.innovation.innovation_clone_be.Member.Dto.LoginRequestDto;
@@ -13,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +31,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
+    private final CartRepository cartRepository;
 
     @Transactional
     public ResponseDto<?> createMember(MemberRequestDto requestDto) {
@@ -53,7 +57,10 @@ public class MemberService {
         }
         TokenDto tokenDto = tokenProvider.generateTokenDto(member);
         tokenToHeaders(tokenDto, response);
-        return ResponseDto.success("success login");
+
+        List<Cart> cartList =cartRepository.findCartByMember(member);
+
+        return ResponseDto.success("success login", cartList.size());
 
     }
 

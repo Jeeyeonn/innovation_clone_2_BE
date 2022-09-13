@@ -44,6 +44,13 @@ public class Member {
         this.subscription = memberRequestDto.getSubscription();
     }
 
+    public Member(String email, String nickname) {
+        this.password = "kakao user";
+        this.email = email;
+        this.username = nickname;
+        this.subscription = false;
+    }
+
     public boolean validatePassword(PasswordEncoder passwordEncoder, String password) {
         return passwordEncoder.matches(password, this.password);
     }
