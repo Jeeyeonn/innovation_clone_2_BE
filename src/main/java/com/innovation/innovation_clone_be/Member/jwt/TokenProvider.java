@@ -20,6 +20,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
 import java.util.Date;
 import java.util.Optional;
@@ -120,4 +121,5 @@ public class TokenProvider {
         refreshTokenRepository.delete(refreshToken);
         return ResponseDto.success("success");
     }
+
 }

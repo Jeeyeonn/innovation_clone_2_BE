@@ -34,7 +34,6 @@ public class CartService {
 
         //로그인 토큰 유효성 검증하기
         ResponseDto<?> result = memberService.checkMember(request);
-
         Member member = (Member) result.getData();
 
         Product product = productRepository.findProductById(requestDto.getProductId());
@@ -56,8 +55,9 @@ public class CartService {
             List<Cart> carts = cartRepository.findAllByProduct(product);
             product.setCartNum(carts.size());
 
+            List<Cart> member_cart = cartRepository.findCartByMember(member);
 
-            return ResponseDto.success("success post");
+            return ResponseDto.success("success post", member_cart.size());
         }
 
 
@@ -89,7 +89,9 @@ public class CartService {
             List<Cart> carts = cartRepository.findAllByProduct(product);
             product.setCartNum(carts.size());
 
-            return ResponseDto.success("success post");
+            List<Cart> member_cart = cartRepository.findCartByMember(member);
+
+            return ResponseDto.success("success post", member_cart.size());
         }
     }
 
@@ -106,7 +108,7 @@ public class CartService {
             responseDtoList.add(new CartResponseDto(cart));
         }
 
-        return ResponseDto.success(responseDtoList);
+        return ResponseDto.success(responseDtoList, carts.size());
     }
 
     @Transactional
@@ -128,10 +130,13 @@ public class CartService {
             return ResponseDto.fail(ErrorCode.INVALID_CART);
 
         cartRepository.delete(cart);
-        return ResponseDto.success("success delete");
+        List<Cart> carts = cartRepository.findCartByMember(member);
+
+        return ResponseDto.success("success delete", carts.size());
     }
 
-    public ResponseDto<?> getAllCart() {
+    public ResponseDto<?> getAllCart(HttpServletRequest request) {
+
         List<Product> cartList = productRepository.findAllByOrderByCartNumDesc();
         List<ProductResponseDto> cartResponseDto = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -146,7 +151,17 @@ public class CartService {
             );
 
         }
-        return ResponseDto.success(cartResponseDto);
+
+        //로그인 토큰 유효성 검증하기
+        ResponseDto<?> result = memberService.checkMember(request);
+        Member member = (Member) result.getData();
+
+        if (member == null)
+            return ResponseDto.success(cartResponseDto);
+        else{
+            List<Cart> carts = cartRepository.findCartByMember(member);
+            return ResponseDto.success(cartResponseDto, carts.size());
+        }
     }
 
 
@@ -161,7 +176,7 @@ public class CartService {
         for (Cart cart : carts)
             cartRepository.delete(cart);
 
-        return ResponseDto.success("success delete");
+        return ResponseDto.success("success delete", 0);
     }
 
     @Transactional
@@ -184,6 +199,8 @@ public class CartService {
 
         cart.update(requestDto.getCount());
 
-        return ResponseDto.success("success update");
+        List<Cart> carts = cartRepository.findCartByMember(member);
+
+        return ResponseDto.success("success update", carts.size());
     }
 }
