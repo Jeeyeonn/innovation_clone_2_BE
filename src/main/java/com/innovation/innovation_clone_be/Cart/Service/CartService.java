@@ -33,7 +33,7 @@ public class CartService {
     public ResponseDto<?> addCartProduct(ProductRequestDto requestDto, HttpServletRequest request) {
 
         //로그인 토큰 유효성 검증하기
-        ResponseDto<?> result = memberService.chechMember(request);
+        ResponseDto<?> result = memberService.checkMember(request);
 
         Member member = (Member) result.getData();
 
@@ -67,7 +67,7 @@ public class CartService {
     public ResponseDto<?> addCartDetailProduct(CartRequestDto requestDto, HttpServletRequest request) {
 
         //로그인 토큰 유효성 검증하기
-        ResponseDto<?> result = memberService.chechMember(request);
+        ResponseDto<?> result = memberService.checkMember(request);
         Member member = (Member) result.getData();
 
         Product product = productRepository.findProductById(requestDto.getProductId());
@@ -96,7 +96,7 @@ public class CartService {
     @Transactional
     public ResponseDto<?> getMyCart(HttpServletRequest request) {
         //로그인 토큰 유효성 검증하기
-        ResponseDto<?> result = memberService.chechMember(request);
+        ResponseDto<?> result = memberService.checkMember(request);
         Member member = (Member) result.getData();
 
         List<CartResponseDto> responseDtoList = new ArrayList<>();
@@ -112,7 +112,7 @@ public class CartService {
     @Transactional
     public ResponseDto<?> deleteCart(Long product_id , HttpServletRequest request) {
         //로그인 토큰 유효성 검증하기
-        ResponseDto<?> result = memberService.chechMember(request);
+        ResponseDto<?> result = memberService.checkMember(request);
         Member member = (Member) result.getData();
 
         Product product = productRepository.findProductById(product_id);
@@ -153,7 +153,7 @@ public class CartService {
     public ResponseDto<?> deleteAllCart(HttpServletRequest request) {
 
         //로그인 토큰 유효성 검증하기
-        ResponseDto<?> result = memberService.chechMember(request);
+        ResponseDto<?> result = memberService.checkMember(request);
         Member member = (Member) result.getData();
 
         List<Cart> carts = cartRepository.findCartByMember(member);
@@ -167,7 +167,7 @@ public class CartService {
     @Transactional
     public ResponseDto<?> putMyCart(HttpServletRequest request, CartUpdateRequestDto requestDto) {
         //로그인 토큰 유효성 검증하기
-        ResponseDto<?> result = memberService.chechMember(request);
+        ResponseDto<?> result = memberService.checkMember(request);
         Member member = (Member) result.getData();
 
         Product product = productRepository.findProductById(requestDto.getProductId());

@@ -1,11 +1,9 @@
 package com.innovation.innovation_clone_be.Member.Service;
 
-import antlr.Token;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Error.Enum.ErrorCode;
 import com.innovation.innovation_clone_be.Member.Dto.LoginRequestDto;
 import com.innovation.innovation_clone_be.Member.Dto.MemberRequestDto;
-import com.innovation.innovation_clone_be.Member.Dto.MemberResponseDto;
 import com.innovation.innovation_clone_be.Member.Dto.TokenDto;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
 import com.innovation.innovation_clone_be.Member.Repository.MemberRepository;
@@ -67,7 +65,7 @@ public class MemberService {
         if (null == member) {
             return ResponseDto.fail(ErrorCode.MEMBER_NOT_FOUND);
         }
-        return ResponseDto.success(tokenProvider.deleteRefreshToken(member));
+        return tokenProvider.deleteRefreshToken(member);
     }
 
     @Transactional(readOnly = true)
@@ -81,7 +79,7 @@ public class MemberService {
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
     }
 
-    public ResponseDto<?> chechMember(HttpServletRequest request){
+    public ResponseDto<?> checkMember(HttpServletRequest request){
         if (null == request.getHeader("Refresh-Token")) {
             return ResponseDto.fail(NULL_TOKEN);
         }
