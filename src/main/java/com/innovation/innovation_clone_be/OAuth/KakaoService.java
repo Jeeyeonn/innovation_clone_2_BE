@@ -25,7 +25,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -58,10 +65,10 @@ public class KakaoService {
 
         TokenDto tokenDto = jwtTokenProvider.generateTokenDto(kakaoUser);
 
-        response.addHeader("Access-Token", tokenDto.getAccessToken());
+        response.addHeader("Access-Token", "Bearer " + tokenDto.getAccessToken());
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
 
-        OAuthResponseDto responseDto = new OAuthResponseDto(kakaoUser, tokenDto);
+        OAuthResponseDto responseDto = new OAuthResponseDto(kakaoUser, tokenDto, accessToken);
 
         return ResponseDto.success(responseDto);
     }
@@ -170,4 +177,31 @@ public class KakaoService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
+    public ResponseDto<?> logout(HttpServletRequest request) {
+        String token = request.getHeader("kakaoToken");
+
+        String reqURL = "https://kapi.kakao.com/v1/user/logout";
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Authorization", "Bearer " + token);
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            String result = "";
+            String line = "";
+
+            while ((line = br.readLine()) != null) {
+                result += line;
+            }
+            System.out.println(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ResponseDto.success("logout success");
+    }
 }
