@@ -20,7 +20,7 @@ public class MailScheduler {
     private final MemberRepository memberRepository;
 
     @Transactional
-    @Scheduled(cron = "0 15 18 * * *")
+    @Scheduled(cron = "0 50 18 * * *")
     public void sendNewsEmail() {
         List<Member> memberList = memberRepository.findAllBySubscriptionEquals(true);
         for (Member member: memberList) {
