@@ -14,6 +14,8 @@ public class CartResponseDto {
     private Boolean pack;
     private String img1;
 
+    private Boolean isChecked;
+
     public CartResponseDto(Cart cart){
         this.productId = cart.getProduct().getId();
         this.name = cart.getProduct().getName();
@@ -21,5 +23,6 @@ public class CartResponseDto {
         this.count = cart.getCount();
         this.pack = cart.getPack();
         this.img1 = cart.getProduct().getImg1();
+        this.isChecked = true;
     }
 }

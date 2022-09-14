@@ -5,8 +5,7 @@ import com.innovation.innovation_clone_be.Cart.Repository.CartRepository;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Error.Enum.ErrorCode;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
-import com.innovation.innovation_clone_be.Member.Repository.MemberRepository;
-import com.innovation.innovation_clone_be.Product.Dto.Request.ProductRequestDto;
+import com.innovation.innovation_clone_be.Member.Service.MemberService;
 import com.innovation.innovation_clone_be.Product.Dto.Response.ProductDetailResponseDto;
 import com.innovation.innovation_clone_be.Product.Dto.Response.ProductResponseDto;
 import com.innovation.innovation_clone_be.Product.Entity.Product;
@@ -14,6 +13,7 @@ import com.innovation.innovation_clone_be.Product.Repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +23,11 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final MemberService memberService;
+    private final CartRepository cartRepository;
 
     @Transactional
-    public ResponseDto<?> getAllProduct() {
+    public ResponseDto<?> getAllProduct(HttpServletRequest request) {
 
         List<Product> products = productRepository.findAll();
         List<ProductResponseDto> productResponseDtos = new ArrayList<>();
@@ -34,11 +36,20 @@ public class ProductService {
             productResponseDtos.add(new ProductResponseDto(product));
         }
 
-        return ResponseDto.success(productResponseDtos);
+        //로그인 토큰 유효성 검증하기
+        ResponseDto<?> result = memberService.checkMember(request);
+        Member member = (Member) result.getData();
+
+        if (member == null){
+            return ResponseDto.success(productResponseDtos);
+        }else {
+            List<Cart> carts = cartRepository.findCartByMember(member);
+            return ResponseDto.success(productResponseDtos, carts.size());
+        }
     }
 
     @Transactional
-    public ResponseDto<?> getOneProduct(Long product_id) {
+    public ResponseDto<?> getOneProduct(Long product_id, HttpServletRequest request) {
 
         Product product = productRepository.findProductById(product_id);
 
@@ -48,7 +59,15 @@ public class ProductService {
 
         ProductDetailResponseDto productDetailResponseDto = new ProductDetailResponseDto(product);
 
-        return ResponseDto.success(productDetailResponseDto);
+        //로그인 토큰 유효성 검증하기
+        ResponseDto<?> result = memberService.checkMember(request);
+        Member member = (Member) result.getData();
 
+        if (member == null){
+            return ResponseDto.success(productDetailResponseDto);
+        }else {
+            List<Cart> carts = cartRepository.findCartByMember(member);
+            return ResponseDto.success(productDetailResponseDto, carts.size());
+        }
     }
 }

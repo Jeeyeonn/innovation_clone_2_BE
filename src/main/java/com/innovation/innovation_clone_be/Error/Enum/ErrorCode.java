@@ -22,9 +22,10 @@ public enum ErrorCode {
 
     //장바구니 관련 오류
     INVALID_CART("INVALID_CART", "해당하는 제품이 장바구니에 없습니다."),
-    DUPLICATE_CART("DUPLICATE_CART", "해당하는 제품이 장바구니에 이미 있습니다.");
+    DUPLICATE_CART("DUPLICATE_CART", "해당하는 제품이 장바구니에 이미 있습니다."),
 
-
+    //소셜로그인 관련 오류
+    NOTFOUND_LOGIN_TYPE("NOTFOUND_LOGIN_TYPE", "해당하는 소셜로그인 종류가 없습니다.");
 
     private final String code;
     private final String message;

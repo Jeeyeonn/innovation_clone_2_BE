@@ -1,11 +1,11 @@
 package com.innovation.innovation_clone_be.Member.Service;
 
-import antlr.Token;
+import com.innovation.innovation_clone_be.Cart.Entity.Cart;
+import com.innovation.innovation_clone_be.Cart.Repository.CartRepository;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Error.Enum.ErrorCode;
 import com.innovation.innovation_clone_be.Member.Dto.LoginRequestDto;
 import com.innovation.innovation_clone_be.Member.Dto.MemberRequestDto;
-import com.innovation.innovation_clone_be.Member.Dto.MemberResponseDto;
 import com.innovation.innovation_clone_be.Member.Dto.TokenDto;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
 import com.innovation.innovation_clone_be.Member.Repository.MemberRepository;
@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
+    private final CartRepository cartRepository;
 
     @Transactional
     public ResponseDto<?> createMember(MemberRequestDto requestDto) {
@@ -55,7 +57,10 @@ public class MemberService {
         }
         TokenDto tokenDto = tokenProvider.generateTokenDto(member);
         tokenToHeaders(tokenDto, response);
-        return ResponseDto.success("success login");
+
+        List<Cart> cartList =cartRepository.findCartByMember(member);
+
+        return ResponseDto.success("success login", cartList.size());
 
     }
 
@@ -67,7 +72,7 @@ public class MemberService {
         if (null == member) {
             return ResponseDto.fail(ErrorCode.MEMBER_NOT_FOUND);
         }
-        return ResponseDto.success(tokenProvider.deleteRefreshToken(member));
+        return tokenProvider.deleteRefreshToken(member);
     }
 
     @Transactional(readOnly = true)
@@ -81,7 +86,7 @@ public class MemberService {
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
     }
 
-    public ResponseDto<?> chechMember(HttpServletRequest request){
+    public ResponseDto<?> checkMember(HttpServletRequest request){
         if (null == request.getHeader("Refresh-Token")) {
             return ResponseDto.fail(NULL_TOKEN);
         }

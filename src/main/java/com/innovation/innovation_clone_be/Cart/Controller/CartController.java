@@ -60,7 +60,7 @@ public class CartController {
 
     //전체 제품 보여주기 (전체 상품 페이지)
     @GetMapping(value = "/api/main")
-    public ResponseDto<?> getAllCart() {
-        return cartService.getAllCart();
+    public ResponseDto<?> getAllCart(HttpServletRequest request) {
+        return cartService.getAllCart(request);
     }
 }
