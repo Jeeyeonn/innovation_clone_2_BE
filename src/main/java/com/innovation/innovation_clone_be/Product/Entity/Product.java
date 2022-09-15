@@ -1,6 +1,7 @@
 package com.innovation.innovation_clone_be.Product.Entity;
 
 import com.innovation.innovation_clone_be.Cart.Entity.Cart;
+import com.innovation.innovation_clone_be.Product.Dto.Request.ProductDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,4 +40,12 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cart> carts;
 
+    public Product(ProductDto productDto){
+        this.name = productDto.getName();
+        this.content = productDto.getContent();
+        this.price = productDto.getPrice();
+        this.img1 = productDto.getImg1();;
+        this.img2 = productDto.getImg2();
+        this.cartNum = 0;
+    }
 }
