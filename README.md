@@ -73,7 +73,7 @@ https://osulloc.vercel.app
 5. **제품 상세페이지**
     - [x]  제품 이미지, 가격, 수량 선택, 장바구니
 
-<div align="center">
+<div align="left">
 
 <br>
 
@@ -81,7 +81,24 @@ https://osulloc.vercel.app
 
 <br>
 
-dfsf
+- **2022 / 09 / 09**
+    - 오류 : 포스트맨으로 CRUD를 할 때 API가 실행되지 않고 Authentication을 입력하라는 창이 계속 떴다.
+    - 문제점 : 초기 설정에 스프링 시큐리티의 의존성을 추가해놓고 config를 구현하지 않았기 때문.
+    - 해결법 : 일단 스프링 시큐리티 의존성 부분을 주석처리 하고 나중에 로그인 구현할 때 사용하기로 함.
+   
+    <br>
+    
+- **2022 / 09 / 12**
+    - 오류 : 구현한 대로 잘 돌아갔지만, ResponseEntity가 나오지 않았고 404 Not Found 오류가 떴음.
+    - 문제점 : @RestController를 사용하지 않고, @Controller 어노테이션을 사용했기 때문에 인식을 못했다.
+    - 해결법 : @RestController 사용
+    
+     <br>
+     
+- **2022 / 09 / 13**
+    - 오류 : 카카오 로그인 KOE320 에러
+    - 문제점 : 프론트에서 보내준 유저 정보인 code를 재사용해서 나는 오류인 줄 알았는데, 프론트 서버에만 Redirect Url를 설정해주었기 때문
+    - 해결법 : 프론트 서버와 백 서버 둘 다 Redirect Url로 추가하였다.
 
 <br>
 
