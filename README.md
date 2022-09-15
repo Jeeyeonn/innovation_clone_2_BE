@@ -116,8 +116,13 @@ https://osulloc.vercel.app
 
 <br>
 
+<div align="center">
+
 ## 📁 Directory Structure 📂 </div>
 
+<br>
+
+<div align="left">
 <details>
 <summary> Front-end </summary>
 <div markdown="1">
@@ -202,6 +207,7 @@ https://osulloc.vercel.app
 </div>
 </details>
 
+<br>
 
 <details>
 <summary> Back-end </summary>
@@ -303,6 +309,9 @@ https://osulloc.vercel.app
 </div>
 </details>
 
+<br>
+
+<div align="center">
 
 ## 📚 ERD 설계 📚
 
@@ -312,7 +321,11 @@ https://osulloc.vercel.app
 
 <div align="center">
 
+<br>
+
 ## 💊 Error-Code 💊
+
+<br>
 
 | 코드 | 메시지 |
 | --- | --- |
