@@ -1,6 +1,8 @@
 # 🌿Innovation_cloneProject_2조 - 오설록 🌿
+
 <br>
 <br>
+
 ## 🧑🏻‍💻 팀원 정보
 
 ### 박지연 [(GitHub)](https://github.com/Jeeyeonn)
