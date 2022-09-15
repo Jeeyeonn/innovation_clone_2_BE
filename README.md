@@ -8,7 +8,7 @@
 
 https://osulloc.vercel.app
 
-[팀전체 To - do](https://www.notion.so/93c9a7fab2d54686ad90e48a52d1825b)
+[오설록 프로젝트 시연영상](https://www.youtube.com/watch?v=qCpXsTa6xEY)
 
 [오설록 API 설계](https://www.notion.so/d47ec36a42a047a68b435ad6a53eab61)
 
