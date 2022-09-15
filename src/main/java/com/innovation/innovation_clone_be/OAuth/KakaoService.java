@@ -7,25 +7,17 @@ import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Member.Dto.TokenDto;
 import com.innovation.innovation_clone_be.Member.Entity.Member;
 import com.innovation.innovation_clone_be.Member.Repository.MemberRepository;
-import com.innovation.innovation_clone_be.Member.Repository.RefreshTokenRepository;
-import com.innovation.innovation_clone_be.Member.Service.UserDetailsServiceImpl;
 import com.innovation.innovation_clone_be.Member.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
@@ -33,19 +25,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import static com.innovation.innovation_clone_be.Member.jwt.JwtFilter.AUTHORITIES_KEY;
-
 
 @Service
 @RequiredArgsConstructor
 public class KakaoService {
     private final MemberRepository userRepository;
     private final TokenProvider jwtTokenProvider;
-    private final UserDetailsServiceImpl userDetailsService;
 
     @Value("${kakao.client-id}")
     private String KakaoClientId;
@@ -73,13 +58,6 @@ public class KakaoService {
         return ResponseDto.success(responseDto);
     }
 
-    public boolean is_User(Member user){
-        Member finduser = userRepository.findMemberByEmail(user.getEmail());
-        if (finduser != null)
-            return true;
-        else
-            return false;
-    }
 
     private String getAccessToken(String code) throws JsonProcessingException {
         // HTTP Header 생성

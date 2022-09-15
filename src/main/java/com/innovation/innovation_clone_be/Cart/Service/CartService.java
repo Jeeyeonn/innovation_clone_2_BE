@@ -59,8 +59,6 @@ public class CartService {
 
             return ResponseDto.success("success post", member_cart.size());
         }
-
-
     }
 
     @Transactional
@@ -105,7 +103,14 @@ public class CartService {
         List<Cart> carts = cartRepository.findCartByMember(member);
 
         for (Cart cart : carts){
-            responseDtoList.add(new CartResponseDto(cart));
+            responseDtoList.add(CartResponseDto.builder()
+                    .productId(cart.getProduct().getId())
+                    .name(cart.getProduct().getName())
+                    .price(cart.getProduct().getPrice())
+                    .count(cart.getCount())
+                    .pack(cart.getPack())
+                    .img1(cart.getProduct().getImg1())
+                    .isChecked(true).build());
         }
 
         return ResponseDto.success(responseDtoList, carts.size());
@@ -139,6 +144,7 @@ public class CartService {
 
         List<Product> cartList = productRepository.findAllByOrderByCartNumDesc();
         List<ProductResponseDto> cartResponseDto = new ArrayList<>();
+
         for (int i = 0; i < 10; i++) {
             cartResponseDto.add(
             ProductResponseDto.builder()

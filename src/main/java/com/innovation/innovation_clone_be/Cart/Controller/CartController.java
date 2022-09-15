@@ -6,11 +6,8 @@ import com.innovation.innovation_clone_be.Cart.Dto.CartUpdateRequestDto;
 import com.innovation.innovation_clone_be.Cart.Service.CartService;
 import com.innovation.innovation_clone_be.Error.Dto.ResponseDto;
 import com.innovation.innovation_clone_be.Product.Dto.Request.ProductRequestDto;
-import com.innovation.innovation_clone_be.Product.Service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -39,6 +36,7 @@ public class CartController {
     public ResponseDto<?> getMyCart(HttpServletRequest request){
         return cartService.getMyCart(request);
     }
+
 
     //제품 수량 변경 (장바구니 페이지)
     @PutMapping("/api/auth/mycart")

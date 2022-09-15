@@ -33,7 +33,12 @@ public class ProductService {
         List<ProductResponseDto> productResponseDtos = new ArrayList<>();
 
         for(Product product: products){
-            productResponseDtos.add(new ProductResponseDto(product));
+            productResponseDtos.add(ProductResponseDto.builder()
+                    .productId(product.getId())
+                    .name(product.getName())
+                    .price(product.getPrice())
+                    .img1(product.getImg1())
+                    .img2(product.getImg2()).build());
         }
 
         //로그인 토큰 유효성 검증하기
@@ -57,7 +62,13 @@ public class ProductService {
         if(product == null)
             return ResponseDto.fail(ErrorCode.INVALID_PRODUCT);
 
-        ProductDetailResponseDto productDetailResponseDto = new ProductDetailResponseDto(product);
+        ProductDetailResponseDto productDetailResponseDto
+                = ProductDetailResponseDto.builder()
+                .productId(product_id)
+                .name(product.getName())
+                .content(product.getContent())
+                .img1(product.getImg1())
+                .price(product.getPrice()).build();
 
         //로그인 토큰 유효성 검증하기
         ResponseDto<?> result = memberService.checkMember(request);

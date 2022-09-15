@@ -1,9 +1,7 @@
 package com.innovation.innovation_clone_be.Member.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.innovation.innovation_clone_be.Cart.Entity.Cart;
 import com.innovation.innovation_clone_be.Member.Dto.MemberRequestDto;
-import com.innovation.innovation_clone_be.Member.Dto.MemberResponseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

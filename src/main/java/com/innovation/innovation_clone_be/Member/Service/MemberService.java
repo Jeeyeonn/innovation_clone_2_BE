@@ -14,12 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import static com.innovation.innovation_clone_be.Error.Enum.ErrorCode.INVALID_TOKEN;
 import static com.innovation.innovation_clone_be.Error.Enum.ErrorCode.NULL_TOKEN;
 
@@ -64,6 +62,7 @@ public class MemberService {
 
     }
 
+    @Transactional
     public ResponseDto<?> logout(HttpServletRequest request) {
         if (!tokenProvider.validateToken(request.getHeader("Refresh-Token"))) {
             return ResponseDto.fail(INVALID_TOKEN);
@@ -81,11 +80,13 @@ public class MemberService {
         return optionalMember.orElse(null);
     }
 
+    @Transactional
     public void tokenToHeaders(TokenDto tokenDto, HttpServletResponse response) {
         response.addHeader("Authorization", "Bearer " + tokenDto.getAccessToken());
         response.addHeader("Refresh-Token", tokenDto.getRefreshToken());
     }
 
+    @Transactional
     public ResponseDto<?> checkMember(HttpServletRequest request){
         if (null == request.getHeader("Refresh-Token")) {
             return ResponseDto.fail(NULL_TOKEN);
