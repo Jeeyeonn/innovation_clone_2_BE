@@ -1,25 +1,61 @@
+<div align="center">
+<br>
+
 # 🌿Innovation_cloneProject_2조 - 오설록 🌿
-
-<br>
 <br>
 
-## 🧑🏻‍💻 팀원 정보
+### <b>오설록 사이트 클론코딩</b>
 
-### 박지연 [(GitHub)](https://github.com/Jeeyeonn)
+https://osulloc.vercel.app
 
-### 전선향 [(GitHub)](https://github.com/petal416)
+[팀전체 To - do](https://www.notion.so/93c9a7fab2d54686ad90e48a52d1825b)
+
+[오설록 API 설계](https://www.notion.so/d47ec36a42a047a68b435ad6a53eab61)
+
+[오설록 기능 및 페이지](https://www.notion.so/2405717aea934a5d9babba16b7d43921)
+<br>
+
+## 💻 &nbsp; <b>github</b> &nbsp; 💻
 
 <br>
+
+[Front-end](https://github.com/k-gardn/osulloc_FE)
+
+[Back-end](https://github.com/Jeeyeonn/innovation_clone_2_BE)
+
+<br>
+
+## 👩🏻‍💻 <b>Contributors</b> 🧑🏻‍💻
+
+<br>
+
+| [김정원](https://github.com/k-gardn) | [문이슬](https://github.com/Leeseul-Moon) | [차혜인](https://github.com/hyeincha) | [박지연](https://github.com/Jeeyeonn) | [전선향](https://github.com/petal416) |
+| :----------------------------------: | :---------------------------------------: | :-----------------------------------: | :-----------------------------------: | :-----------------------------------: |
+|                  FE                  |                    FE                     |                  FE                   |                  BE                   |                  BE                   |
+|              상세페이지              |                메인페이지                 |                로그인                 |            전체상품페이지             |                로그인                 |
+|               장바구니               |              전체상품페이지               |               회원가입                |              상세페이지               |               회원가입                |
+|                                      |                                           |                                       |               장바구니                |              메인페이지               |
+
 <br>
 
 ## 📆 프로젝트 기간
 
+<br>
+
 ### 2022년 9월 9일 ~ 2022년 9월 15일 (총 7일)
 
 <br>
+
+## ⚙️ <b>Tech Stack</b> 🛠
+
 <br>
 
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Java-green?style=flat-square&logo=java&logoColor=white"/> <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Spring-green?style=flat-square&logo=Spring&logoColor=white"/> <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/javascript-yellow?style=flat-square&logo=javascript&logoColor=white"/><img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/React-blue?style=flat-square&logo=React&logoColor=white"/> <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Redux-purple?style=flat-square&logo=Redux&logoColor=white"/> <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/AWS-232f3e?style=flat-square&logo=amazon&logoColor=white"/>
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/vercel-black?style=flat-square&logo=vercel&logoColor=white"/> <br /><br />
+
+
 ## 📚 구현 기능
+<div align="left">
 
 1. **메인페이지**
     - [x]  베스트 상품 → 장바구니 담은 수 상위 10개
@@ -37,20 +73,215 @@
 5. **제품 상세페이지**
     - [x]  제품 이미지, 가격, 수량 선택, 장바구니
 
+<div align="center">
 
-[팀전체 To - do](https://www.notion.so/93c9a7fab2d54686ad90e48a52d1825b)
+<br>
 
-[오설록 API 설계](https://www.notion.so/d47ec36a42a047a68b435ad6a53eab61)
+## 🎈 Trouble Shooting 🎈
 
-[오설록 기능 및 페이지](https://www.notion.so/2405717aea934a5d9babba16b7d43921)
+<br>
+
+dfsf
+
+<br>
+
+## 📁 Directory Structure 📂 </div>
+
+<details>
+<summary> Front-end </summary>
+<div markdown="1">
+
+```
+📦src
+ ┣ 📂components
+ ┃ ┣ 📂cart
+ ┃ ┃ ┣ 📜Cart.jsx
+ ┃ ┃ ┗ 📜Cart.module.css
+ ┃ ┣ 📂cart_item
+ ┃ ┃ ┣ 📜CartItem.jsx
+ ┃ ┃ ┗ 📜CartItem.module.css
+ ┃ ┣ 📂common
+ ┃ ┃ ┣ 📂Footer
+ ┃ ┃ ┃ ┣ 📜Footer.jsx
+ ┃ ┃ ┃ ┗ 📜Footer.module.css
+ ┃ ┃ ┣ 📂Header
+ ┃ ┃ ┃ ┣ 📜Header.jsx
+ ┃ ┃ ┃ ┗ 📜Header.module.css
+ ┃ ┃ ┣ 📜LayoutPage.jsx
+ ┃ ┃ ┗ 📜LayoutPage.module.css
+ ┃ ┣ 📂detail
+ ┃ ┃ ┣ 📜Detail.jsx
+ ┃ ┃ ┗ 📜Detail.module.css
+ ┃ ┣ 📂join
+ ┃ ┃ ┣ 📜Join.jsx
+ ┃ ┃ ┗ 📜Join.module.css
+ ┃ ┣ 📂login
+ ┃ ┃ ┣ 📜KakaoLogin.jsx
+ ┃ ┃ ┣ 📜KakaoRedirect.jsx
+ ┃ ┃ ┣ 📜Login.jsx
+ ┃ ┃ ┗ 📜Login.module.css
+ ┃ ┣ 📂main
+ ┃ ┃ ┣ 📂banner
+ ┃ ┃ ┃ ┣ 📜Banner.jsx
+ ┃ ┃ ┃ ┣ 📜Banner.module.css
+ ┃ ┃ ┃ ┗ 📜arrowForward.png
+ ┃ ┃ ┣ 📂bestProducts
+ ┃ ┃ ┃ ┣ 📜BestProducts.jsx
+ ┃ ┃ ┃ ┗ 📜BestProducts.module.css
+ ┃ ┃ ┣ 📂eventBanner
+ ┃ ┃ ┃ ┣ 📜EventBanner.jsx
+ ┃ ┃ ┃ ┗ 📜EventBanner.module.css
+ ┃ ┃ ┣ 📂subscription
+ ┃ ┃ ┃ ┣ 📜Subscription.jsx
+ ┃ ┃ ┃ ┗ 📜Subscription.module.css
+ ┃ ┃ ┗ 📂subscriptionItem
+ ┃ ┃ ┃ ┣ 📜SubscriptionItem.jsx
+ ┃ ┃ ┃ ┗ 📜SubscriptionItem.module.css
+ ┃ ┣ 📂productItem
+ ┃ ┃ ┣ 📜ProductItem.jsx
+ ┃ ┃ ┗ 📜Productitem.module.css
+ ┃ ┗ 📂productList
+ ┃ ┃ ┣ 📜ProductList.jsx
+ ┃ ┃ ┗ 📜ProductList.module.css
+ ┣ 📂hooks
+ ┃ ┣ 📜useBrowerEvent.jsx
+ ┃ ┗ 📜useInput.js
+ ┣ 📂network
+ ┃ ┗ 📜request.js
+ ┣ 📂pages
+ ┃ ┣ 📜CartPage.jsx
+ ┃ ┣ 📜DetailPage.jsx
+ ┃ ┣ 📜MainPage.jsx
+ ┃ ┗ 📜ProductListPage.jsx
+ ┣ 📂redux
+ ┃ ┣ 📂modules
+ ┃ ┃ ┣ 📜cartSlice.js
+ ┃ ┃ ┣ 📜detailSlice.js
+ ┃ ┃ ┣ 📜productSlice.js
+ ┃ ┃ ┗ 📜usersSlice.js
+ ┃ ┗ 📜configStore.js
+ ┣ 📂utils
+ ┃ ┗ 📜moneyForm.js
+ ┣ 📜App.css
+ ┣ 📜App.js
+ ┣ 📜index.css
+ ┗ 📜index.js
+```
+
+</div>
+</details>
 
 
-## 📚 ERD 설계
+<details>
+<summary> Back-end </summary>
+<div markdown="1">
 
-![innovation_clone.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/47a856dc-d45f-4337-a7fd-4cd489c7b740/innovation_clone.png)
+```
+📦src
+ ┣ 📂main
+ ┃ ┣ 📂java
+ ┃ ┃ ┗ 📂com
+ ┃ ┃ ┃ ┗ 📂innovation
+ ┃ ┃ ┃ ┃ ┗ 📂innovation_clone_be
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂Cart
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CartController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CartRequestDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CartResponseDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CartUpdateRequestDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Cart.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CartRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂Service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CartService.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂Error
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ResponseDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂Enum
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ErrorCode.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂Member
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜MemberController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜LoginRequestDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberRequestDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberResponseDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜TokenDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜Member.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜RefreshToken.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜RefreshTokenRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜MemberService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜UserDetailsImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDetailsServiceImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂jwt
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AccessDeniedHandlerException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜AuthenticationEntryPointException.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜TokenProvider.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂shared
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Authority.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂OAuth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜KakaoService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜OAuthController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜OAuthResponseDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜OauthUserDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜UserDetailsImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂Product
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProductController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Request
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ProductDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProductRequestDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂Response
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜ProductDetailResponseDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProductResponseDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Product.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProductRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂Service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProductService.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CorsConfiguration.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜JwtSecurityConfiguration.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SecurityConfiguration.java
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂mail
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂Service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜MailScheduler.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜InnovationCloneBeApplication.java
+ ┃ ┗ 📂resources
+ ┃ ┃ ┗ 📜Test.http
+ ┗ 📂test
+ ┃ ┗ 📂java
+ ┃ ┃ ┗ 📂com
+ ┃ ┃ ┃ ┗ 📂innovation
+ ┃ ┃ ┃ ┃ ┗ 📂innovation_clone_be
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂Cart
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂Entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CartTest.java
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜InnovationCloneBeApplicationTests.java
+```
+
+</div>
+</details>
 
 
-# 6. Error-Code
+## 📚 ERD 설계 📚
+
+<br>
+
+![image](<https://postimagestorage.s3.amazonaws.com/innovation_clone+(1).png>)
+
+<div align="center">
+
+## 💊 Error-Code 💊
 
 | 코드 | 메시지 |
 | --- | --- |
